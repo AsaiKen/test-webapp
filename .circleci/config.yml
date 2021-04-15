@@ -20,15 +20,15 @@ jobs:
             - ./node_modules
       - run:
           name: test
-          command: ./node_modules/.bin/nyc npm test -- --reporter mocha-junit-reporter --reporter-options ./test-results.xml
+          command: ./node_modules/.bin/nyc npm test -- --reporter mocha-junit-reporter --reporter-options "mochaFile=./test-results/mocha/test-results.xml"
       - run:
           name: code-coverage
           command: './node_modules/.bin/nyc report --reporter cobertura --report-dir ./coverage'
       - store_artifacts:
-          path: test-results.xml
+          path: test-results
           destination: tests
       - store_artifacts:
           path: coverage
           destination: coverage
       - store_test_results:
-          path: test-results.xml
+          path: test-results
