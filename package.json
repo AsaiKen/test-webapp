@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --exit test/test.js"
+    "test": "mocha --exit test/test.js",
+    "coverage": "./node_modules/.bin/nyc nyc npm run test"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,6 +16,7 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "mocha": "^8.3.2"
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0"
   }
 }
