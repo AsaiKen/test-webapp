@@ -5,6 +5,8 @@ jobs:
   one:
     docker:
       - image: circleci/node:12.18.0
+    context:
+      - test
     steps:
       - checkout
       - run:
