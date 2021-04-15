@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@4.1
 jobs:
   one:
     docker:
@@ -31,6 +33,13 @@ jobs:
           destination: coverage
       - store_test_results:
           path: test-results
+      - slack/notify:
+          event: fail
+          mentions: '@k.asai'
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
   two:
     docker:
       - image: circleci/ruby:2.4.1
@@ -42,7 +51,7 @@ jobs:
       - run: echo "A more familiar hi"
 
 workflows:
-  version: 2.1
+  version: 2
   one_and_two:
     jobs:
       - one
